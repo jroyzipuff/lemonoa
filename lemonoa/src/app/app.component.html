@@ -1,0 +1,17 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="head"> LEMONOA 
+                <div class="lemonicon-container">
+                                <img id="lemonicon" src="../assets/lemon.png">
+                        </div>
+</div>
+
+<div class="main">
+        <div class="story"> <h2> Challenging, super fun, and satisfying pilates </h2> </div>
+        <div class="schedule-button-container">
+            <button class="schedule-button" [class.active]="scheduleClicked" (click)="onScheduleClick()"> Do Pilates! </button>
+        </div>
+</div>
+<app-map *ngIf="scheduleClicked"></app-map>
+<app-schedule-form *ngIf="scheduleClicked"></app-schedule-form>
+<app-calendar></app-calendar>
+<router-outlet></router-outlet>

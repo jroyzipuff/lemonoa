@@ -1,0 +1,39 @@
+input {
+    outline: none;
+    max-width: 200px;
+}
+
+.personal-info {
+    display: inline-block;
+    padding-left: 30%;
+}
+
+.form-group {
+    position: relative;
+    max-width: 200px;
+}
+
+#form-sessions {
+    max-width: 300px;
+    position: relative;
+    display: inline-block;
+    padding-left: 100px;
+}
+
+.submit-button {
+    display: inline-block;
+    position: relative;
+    padding-left: 50px;
+}
+
+button {
+    position: inline-block;
+    width: 100px;   
+    background: rgb(137, 218, 238);
+    color: #FFFF
+}
+
+#session-box {
+    display: relative;
+    padding-top: 10px;
+}
