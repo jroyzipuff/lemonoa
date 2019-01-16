@@ -3,29 +3,32 @@
     <div class="form-group">
         <label>Full Name</label>
         <input type="text" formControlName="fullName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }" />
-        <!-- <div *ngIf="submitted && f.fullName.errors" class="invalid-feedback">
-            <div *ngIf="f.fullName.errors.required">First Name is required</div>
-        </div> -->
+        <div *ngIf="submitted && f['fullName'].errors" class="invalid-feedback">
+            <div *ngIf="f['fullName'].errors.required">:(</div>
+        </div>
     </div>
     <div class="form-group">
         <label>Email</label>
         <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-        <!-- <div *ngIf="submitted && f.fullName.errors" class="invalid-feedback">
-            <div *ngIf="f.fullName.errors.required">First Name is required</div>
-        </div> -->
+        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+            <div *ngIf="f['email'].errors.required">:(</div>
+        </div>
     </div>
     <div class="form-group">
         <label>Phone</label>
         <input type="text" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
-        <!-- <div *ngIf="submitted && f.fullName.errors" class="invalid-feedback">
-            <div *ngIf="f.fullName.errors.required">First Name is required</div>
-        </div> -->
+        <div *ngIf="submitted && f['phone'].errors" class="invalid-feedback">
+            <div *ngIf="f['phone'].errors.required">:(</div>
+        </div>
     </div>
   </div>
     <div id="form-sessions">
-    <label id="session-box" formArrayName="availableSessions" *ngFor="let session of ['Tuesday 18:00','Tuesday 19:00', 'Wednesday 16:00','Wednesday 17:00','Wednesday 18:00']; let i = index">
-        <input type="checkbox" [formControlName]="i">
-        {{session}}
+    <label id="session-box" formArrayName="availableSessions" *ngFor="let session of sessions; let i = index" [ngClass]="{ 'is-invalid': submitted && f.availableSessions.errors }">
+        <input class="checkbox" type="checkbox" [formControlName]="i">
+        {{session['name']}}
+        <div id="session-option">
+   
+        </div>
     </label>
   </div>
   <div class="submit-button">
