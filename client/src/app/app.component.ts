@@ -14,7 +14,7 @@ export class AppComponent  {
   onScheduleClick() {
     console.log(this.scheduleClicked);
     this.scheduleClicked = !this.scheduleClicked;
-    this.slotsService.scheduleSlot();
+    this.slotsService.getSlots();
   }
 }
 

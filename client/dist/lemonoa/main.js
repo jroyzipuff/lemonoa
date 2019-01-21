@@ -90,23 +90,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_data_provider_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/data-provider.service */ "./src/app/services/data-provider.service.ts");
+
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent() {
+    function AppComponent(slotsService) {
+        this.slotsService = slotsService;
         this.title = 'lemonoa';
         this.scheduleClicked = false;
     }
     AppComponent.prototype.onScheduleClick = function () {
         console.log(this.scheduleClicked);
         this.scheduleClicked = !this.scheduleClicked;
+        this.slotsService.getSlots();
     };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
             styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
-        })
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_data_provider_service__WEBPACK_IMPORTED_MODULE_2__["SlotsService"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -138,6 +143,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_schedule_form_schedule_form_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/schedule-form/schedule-form.component */ "./src/app/components/schedule-form/schedule-form.component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _services_data_provider_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./services/data-provider.service */ "./src/app/services/data-provider.service.ts");
+
 
 
 
@@ -170,7 +177,7 @@ var AppModule = /** @class */ (function () {
                     useFactory: angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_6__["adapterFactory"]
                 }), _angular_forms__WEBPACK_IMPORTED_MODULE_11__["ReactiveFormsModule"]
             ],
-            providers: [],
+            providers: [_services_data_provider_service__WEBPACK_IMPORTED_MODULE_12__["SlotsService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
@@ -398,6 +405,45 @@ var ScheduleFormComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
     ], ScheduleFormComponent);
     return ScheduleFormComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/data-provider.service.ts":
+/*!***************************************************!*\
+  !*** ./src/app/services/data-provider.service.ts ***!
+  \***************************************************/
+/*! exports provided: SlotsService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlotsService", function() { return SlotsService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+var SlotsService = /** @class */ (function () {
+    function SlotsService(http) {
+        this.http = http;
+        this.baseUrl = '/api/v1/slots';
+    }
+    SlotsService.prototype.getSlots = function () {
+        console.log('hi');
+        return this.http.get(this.baseUrl);
+    };
+    SlotsService.prototype.scheduleSlot = function () {
+        console.log(this.http.put(this.baseUrl, { 'fullName': 'Royzipuff', 'email': 'royzipuff@shtudel', 'phone': '0545124566', 'quantity': '1' }));
+    };
+    SlotsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], SlotsService);
+    return SlotsService;
 }());
 
 
