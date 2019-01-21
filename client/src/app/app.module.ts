@@ -10,6 +10,7 @@ import { MapComponent } from './components//map/map.component';
 import { ScheduleFormComponent } from './components/schedule-form/schedule-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SlotsService } from './services/data-provider.service';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       useFactory: adapterFactory
     }),      ReactiveFormsModule
   ],
-  providers: [],
+  providers: [SlotsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
