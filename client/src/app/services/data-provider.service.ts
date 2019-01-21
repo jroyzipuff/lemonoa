@@ -6,8 +6,9 @@ export class SlotsService {
   constructor(private http: HttpClient) { }
   baseUrl = '/api/v1/slots';
   getSlots() {
-    debugger;
-    return this.http.get(this.baseUrl);
+    return this.http.get(this.baseUrl).subscribe((data) => {
+        console.log(data);
+    });
   }
    scheduleSlot() { 
       console.log(this.http.put(this.baseUrl,

@@ -433,8 +433,9 @@ var SlotsService = /** @class */ (function () {
         this.baseUrl = '/api/v1/slots';
     }
     SlotsService.prototype.getSlots = function () {
-        console.log('hi');
-        return this.http.get(this.baseUrl);
+        return this.http.get(this.baseUrl).subscribe(function (data) {
+            console.log(data);
+        });
     };
     SlotsService.prototype.scheduleSlot = function () {
         console.log(this.http.put(this.baseUrl, { 'fullName': 'Royzipuff', 'email': 'royzipuff@shtudel', 'phone': '0545124566', 'quantity': '1' }));
