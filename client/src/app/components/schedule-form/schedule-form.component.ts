@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 
 @Component({
@@ -9,7 +9,10 @@ import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@ang
 export class ScheduleFormComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
-  JSON = JSON;
+
+  @Output()
+  submitPayload = new EventEmitter();
+
   sessions = [
     { id: 354252454, name: 'Tuesday 18:00' },
     { id: 425245245, name: 'Tuesday 19:00' },
@@ -36,12 +39,16 @@ export class ScheduleFormComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-      const sessionScheduled = this.registerForm.value.availableSessions
+      const scheduledSlots = this.registerForm.value.availableSessions
       .map((v, i) => v ? this.sessions[i].id : null)
       .filter(v => v !== null);
     if (this.registerForm.invalid) {
       return;
     } else {
-      console.log(sessionScheduled, this.f['email'].value, this.f['fullName'].value, this.f['phone'].value);
+      this.submitPayload.emit({
+      'ids': scheduledSlots,
+      'email': this.f['email'].value,
+      'fullName': this.f['fullName'].value,
+      'phone': this.f['phone'].value });
     }
 }}

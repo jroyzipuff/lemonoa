@@ -8,13 +8,19 @@ import { SlotsService } from './services/data-provider.service';
 })
 export class AppComponent  {
   title = 'lemonoa';
-  scheduleClicked = false;
+  formOpen = false;
 
   constructor(private slotsService: SlotsService) {}
-  onScheduleClick() {
-    console.log(this.scheduleClicked);
-    this.scheduleClicked = !this.scheduleClicked;
+  onRequestFormClick() {
+    this.slotsService.availableSlots.subscribe((slots) => {
+      console.log(slots);
+    });
+    this.formOpen = !this.formOpen;
     this.slotsService.getSlots();
+  }
+
+  scheduleSlot(data) {
+    this.slotsService.scheduleSlot(data);
   }
 }
 

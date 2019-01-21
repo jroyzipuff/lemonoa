@@ -74,7 +74,7 @@ module.exports = ".head {\n    font-size: 25px;\n    padding: 50px;\n}\n\n.sched
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"head\"> LEMONOA \n                <div class=\"lemonicon-container\">\n                                <img id=\"lemonicon\" src=\"../assets/lemon.png\">\n                        </div>\n</div>\n\n<div class=\"main\">\n        <div class=\"story\"> <h2> Challenging, super fun, and satisfying pilates </h2> </div>\n        <div class=\"schedule-button-container\">\n            <button class=\"schedule-button\" [class.active]=\"scheduleClicked\" (click)=\"onScheduleClick()\"> Do Pilates! </button>\n        </div>\n</div>\n<app-map *ngIf=\"scheduleClicked\"></app-map>\n<app-schedule-form *ngIf=\"scheduleClicked\"></app-schedule-form>\n<app-calendar></app-calendar>\n<router-outlet></router-outlet>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"head\"> LEMONOA \n        <div class=\"lemonicon-container\">\n                <img id=\"lemonicon\" src=\"../assets/lemon.png\">\n        </div>\n</div>\n\n<div class=\"main\">\n        <div class=\"story\"> <h2> Challenging, super fun, and satisfying pilates </h2> </div>\n        <div class=\"schedule-button-container\">\n            <button class=\"schedule-button\" [class.active]=\"formOpen\" (click)=\"onRequestFormClick()\"> Do Pilates! </button>\n        </div>\n</div>\n<!-- <app-map *ngIf=\"formOpen\"></app-map> -->\n<app-schedule-form (submitPayload)=scheduleSlot($event) *ngIf=\"formOpen\"></app-schedule-form>\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -98,12 +98,17 @@ var AppComponent = /** @class */ (function () {
     function AppComponent(slotsService) {
         this.slotsService = slotsService;
         this.title = 'lemonoa';
-        this.scheduleClicked = false;
+        this.formOpen = false;
     }
-    AppComponent.prototype.onScheduleClick = function () {
-        console.log(this.scheduleClicked);
-        this.scheduleClicked = !this.scheduleClicked;
+    AppComponent.prototype.onRequestFormClick = function () {
+        this.slotsService.availableSlots.subscribe(function (slots) {
+            console.log(slots);
+        });
+        this.formOpen = !this.formOpen;
         this.slotsService.getSlots();
+    };
+    AppComponent.prototype.scheduleSlot = function (data) {
+        this.slotsService.scheduleSlot(data);
     };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -138,13 +143,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular_calendar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! angular-calendar */ "./node_modules/angular-calendar/fesm5/angular-calendar.js");
 /* harmony import */ var angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! angular-calendar/date-adapters/date-fns */ "./node_modules/angular-calendar/date-adapters/date-fns/index.js");
 /* harmony import */ var angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_calendar_calendar_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components//calendar/calendar.component */ "./src/app/components/calendar/calendar.component.ts");
-/* harmony import */ var _components_map_map_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components//map/map.component */ "./src/app/components/map/map.component.ts");
-/* harmony import */ var _components_schedule_form_schedule_form_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/schedule-form/schedule-form.component */ "./src/app/components/schedule-form/schedule-form.component.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _services_data_provider_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./services/data-provider.service */ "./src/app/services/data-provider.service.ts");
-
+/* harmony import */ var _components_map_map_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components//map/map.component */ "./src/app/components/map/map.component.ts");
+/* harmony import */ var _components_schedule_form_schedule_form_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/schedule-form/schedule-form.component */ "./src/app/components/schedule-form/schedule-form.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _services_data_provider_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./services/data-provider.service */ "./src/app/services/data-provider.service.ts");
 
 
 
@@ -164,81 +167,23 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
-                _components_calendar_calendar_component__WEBPACK_IMPORTED_MODULE_7__["CalendarComponent"],
-                _components_map_map_component__WEBPACK_IMPORTED_MODULE_8__["MapComponent"],
-                _components_schedule_form_schedule_form_component__WEBPACK_IMPORTED_MODULE_9__["ScheduleFormComponent"]
+                _components_map_map_component__WEBPACK_IMPORTED_MODULE_7__["MapComponent"],
+                _components_schedule_form_schedule_form_component__WEBPACK_IMPORTED_MODULE_8__["ScheduleFormComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"],
                 angular_calendar__WEBPACK_IMPORTED_MODULE_5__["CalendarModule"].forRoot({
                     provide: angular_calendar__WEBPACK_IMPORTED_MODULE_5__["DateAdapter"],
                     useFactory: angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_6__["adapterFactory"]
-                }), _angular_forms__WEBPACK_IMPORTED_MODULE_11__["ReactiveFormsModule"]
+                }), _angular_forms__WEBPACK_IMPORTED_MODULE_10__["ReactiveFormsModule"]
             ],
-            providers: [_services_data_provider_service__WEBPACK_IMPORTED_MODULE_12__["SlotsService"]],
+            providers: [_services_data_provider_service__WEBPACK_IMPORTED_MODULE_11__["SlotsService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/components/calendar/calendar.component.css":
-/*!************************************************************!*\
-  !*** ./src/app/components/calendar/calendar.component.css ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2FsZW5kYXIvY2FsZW5kYXIuY29tcG9uZW50LmNzcyJ9 */"
-
-/***/ }),
-
-/***/ "./src/app/components/calendar/calendar.component.html":
-/*!*************************************************************!*\
-  !*** ./src/app/components/calendar/calendar.component.html ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n</p>"
-
-/***/ }),
-
-/***/ "./src/app/components/calendar/calendar.component.ts":
-/*!***********************************************************!*\
-  !*** ./src/app/components/calendar/calendar.component.ts ***!
-  \***********************************************************/
-/*! exports provided: CalendarComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CalendarComponent", function() { return CalendarComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
-var CalendarComponent = /** @class */ (function () {
-    function CalendarComponent() {
-        this.viewDate = new Date();
-    }
-    CalendarComponent.prototype.ngOnInit = function () {
-    };
-    CalendarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-calendar',
-            template: __webpack_require__(/*! ./calendar.component.html */ "./src/app/components/calendar/calendar.component.html"),
-            styles: [__webpack_require__(/*! ./calendar.component.css */ "./src/app/components/calendar/calendar.component.css")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], CalendarComponent);
-    return CalendarComponent;
 }());
 
 
@@ -336,7 +281,7 @@ module.exports = "input {\n    outline: none;\n    max-width: 200px;\n    max-he
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"registerForm\" (ngSubmit)=\"onSubmit()\">\n  <div class=\"personal-info\">\n    <div class=\"form-group\">\n        <label>Full Name</label>\n        <input type=\"text\" formControlName=\"fullName\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.fullName.errors }\" />\n        <div *ngIf=\"submitted && f['fullName'].errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f['fullName'].errors.required\">:(</div>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label>Email</label>\n        <input type=\"text\" formControlName=\"email\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.email.errors }\" />\n        <div *ngIf=\"submitted && f['email'].errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f['email'].errors.required\">:(</div>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label>Phone</label>\n        <input type=\"text\" formControlName=\"phone\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.phone.errors }\" />\n        <div *ngIf=\"submitted && f['phone'].errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f['phone'].errors.required\">:(</div>\n        </div>\n    </div>\n  </div>\n    <div id=\"form-sessions\">\n    <label id=\"session-box\" formArrayName=\"availableSessions\" *ngFor=\"let session of sessions; let i = index\" [ngClass]=\"{ 'is-invalid': submitted && f.availableSessions.errors }\">\n        <input class=\"checkbox\" type=\"checkbox\" [formControlName]=\"i\">\n        {{session['name']}}\n        <div id=\"session-option\">\n   \n        </div>\n    </label>\n  </div>\n  <div class=\"submit-button\">\n      <button>Schedule</button>\n  </div>\n\n  </form>\n    "
+module.exports = "<form [formGroup]=\"registerForm\" (ngSubmit)=\"onSubmit()\">\n  <div class=\"personal-info\">\n    <div class=\"form-group\">\n        <label>Full Name</label>\n        <input type=\"text\" formControlName=\"fullName\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.fullName.errors }\" />\n        <div *ngIf=\"submitted && f['fullName'].errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f['fullName'].errors.required\">:(</div>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label>Email</label>\n        <input type=\"text\" formControlName=\"email\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.email.errors }\" />\n        <div *ngIf=\"submitted && f['email'].errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f['email'].errors.required\">:(</div>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label>Phone</label>\n        <input type=\"text\" formControlName=\"phone\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.phone.errors }\" />\n        <div *ngIf=\"submitted && f['phone'].errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f['phone'].errors.required\">:(</div>\n        </div>\n    </div>\n  </div>\n    <div id=\"form-sessions\">\n    <label id=\"session-box\" formArrayName=\"availableSessions\" *ngFor=\"let session of sessions; let i = index\" [ngClass]=\"{ 'is-invalid': submitted && f.availableSessions.errors }\">\n        <input class=\"checkbox\" type=\"checkbox\" [formControlName]=\"i\">\n        {{session['name']}}\n        <div id=\"session-option\">\n   \n        </div>\n    </label>\n  </div>\n  <div class=\"submit-button\">\n      <button (click)=\"onSubmit()\">Schedule</button>\n  </div>\n\n  </form>\n    "
 
 /***/ }),
 
@@ -360,7 +305,7 @@ var ScheduleFormComponent = /** @class */ (function () {
     function ScheduleFormComponent(formBuilder) {
         this.formBuilder = formBuilder;
         this.submitted = false;
-        this.JSON = JSON;
+        this.submitPayload = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.sessions = [
             { id: 354252454, name: 'Tuesday 18:00' },
             { id: 425245245, name: 'Tuesday 19:00' },
@@ -386,16 +331,25 @@ var ScheduleFormComponent = /** @class */ (function () {
     ScheduleFormComponent.prototype.onSubmit = function () {
         var _this = this;
         this.submitted = true;
-        var sessionScheduled = this.registerForm.value.availableSessions
+        var scheduledSlots = this.registerForm.value.availableSessions
             .map(function (v, i) { return v ? _this.sessions[i].id : null; })
             .filter(function (v) { return v !== null; });
         if (this.registerForm.invalid) {
             return;
         }
         else {
-            console.log(sessionScheduled, this.f['email'].value, this.f['fullName'].value, this.f['phone'].value);
+            this.submitPayload.emit({
+                'ids': scheduledSlots,
+                'email': this.f['email'].value,
+                'fullName': this.f['fullName'].value,
+                'phone': this.f['phone'].value
+            });
         }
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], ScheduleFormComponent.prototype, "submitPayload", void 0);
     ScheduleFormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-schedule-form',
@@ -424,21 +378,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+
 
 
 
 var SlotsService = /** @class */ (function () {
     function SlotsService(http) {
         this.http = http;
+        this.availableSlots = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"]({});
         this.baseUrl = '/api/v1/slots';
     }
     SlotsService.prototype.getSlots = function () {
+        var _this = this;
         return this.http.get(this.baseUrl).subscribe(function (data) {
-            console.log(data);
+            _this.availableSlots.next(data);
         });
     };
-    SlotsService.prototype.scheduleSlot = function () {
-        console.log(this.http.put(this.baseUrl, { 'fullName': 'Royzipuff', 'email': 'royzipuff@shtudel', 'phone': '0545124566', 'quantity': '1' }));
+    SlotsService.prototype.scheduleSlot = function (payload) {
+        console.log('Service got payload:', payload);
+        this.http.put(this.baseUrl, payload);
     };
     SlotsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
