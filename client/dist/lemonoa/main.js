@@ -133,10 +133,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular_calendar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! angular-calendar */ "./node_modules/angular-calendar/fesm5/angular-calendar.js");
 /* harmony import */ var angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! angular-calendar/date-adapters/date-fns */ "./node_modules/angular-calendar/date-adapters/date-fns/index.js");
 /* harmony import */ var angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _calendar_calendar_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./calendar/calendar.component */ "./src/app/calendar/calendar.component.ts");
-/* harmony import */ var _map_map_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./map/map.component */ "./src/app/map/map.component.ts");
-/* harmony import */ var _schedule_form_schedule_form_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./schedule-form/schedule-form.component */ "./src/app/schedule-form/schedule-form.component.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _components_calendar_calendar_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components//calendar/calendar.component */ "./src/app/components/calendar/calendar.component.ts");
+/* harmony import */ var _components_map_map_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components//map/map.component */ "./src/app/components/map/map.component.ts");
+/* harmony import */ var _components_schedule_form_schedule_form_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/schedule-form/schedule-form.component */ "./src/app/components/schedule-form/schedule-form.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+
 
 
 
@@ -155,17 +157,18 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
-                _calendar_calendar_component__WEBPACK_IMPORTED_MODULE_7__["CalendarComponent"],
-                _map_map_component__WEBPACK_IMPORTED_MODULE_8__["MapComponent"],
-                _schedule_form_schedule_form_component__WEBPACK_IMPORTED_MODULE_9__["ScheduleFormComponent"]
+                _components_calendar_calendar_component__WEBPACK_IMPORTED_MODULE_7__["CalendarComponent"],
+                _components_map_map_component__WEBPACK_IMPORTED_MODULE_8__["MapComponent"],
+                _components_schedule_form_schedule_form_component__WEBPACK_IMPORTED_MODULE_9__["ScheduleFormComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"],
                 angular_calendar__WEBPACK_IMPORTED_MODULE_5__["CalendarModule"].forRoot({
                     provide: angular_calendar__WEBPACK_IMPORTED_MODULE_5__["DateAdapter"],
                     useFactory: angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_6__["adapterFactory"]
-                }), _angular_forms__WEBPACK_IMPORTED_MODULE_10__["ReactiveFormsModule"]
+                }), _angular_forms__WEBPACK_IMPORTED_MODULE_11__["ReactiveFormsModule"]
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
@@ -178,21 +181,21 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/calendar/calendar.component.css":
-/*!*************************************************!*\
-  !*** ./src/app/calendar/calendar.component.css ***!
-  \*************************************************/
+/***/ "./src/app/components/calendar/calendar.component.css":
+/*!************************************************************!*\
+  !*** ./src/app/components/calendar/calendar.component.css ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NhbGVuZGFyL2NhbGVuZGFyLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2FsZW5kYXIvY2FsZW5kYXIuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
-/***/ "./src/app/calendar/calendar.component.html":
-/*!**************************************************!*\
-  !*** ./src/app/calendar/calendar.component.html ***!
-  \**************************************************/
+/***/ "./src/app/components/calendar/calendar.component.html":
+/*!*************************************************************!*\
+  !*** ./src/app/components/calendar/calendar.component.html ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -200,10 +203,10 @@ module.exports = "<p>\n</p>"
 
 /***/ }),
 
-/***/ "./src/app/calendar/calendar.component.ts":
-/*!************************************************!*\
-  !*** ./src/app/calendar/calendar.component.ts ***!
-  \************************************************/
+/***/ "./src/app/components/calendar/calendar.component.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/components/calendar/calendar.component.ts ***!
+  \***********************************************************/
 /*! exports provided: CalendarComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -223,8 +226,8 @@ var CalendarComponent = /** @class */ (function () {
     CalendarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-calendar',
-            template: __webpack_require__(/*! ./calendar.component.html */ "./src/app/calendar/calendar.component.html"),
-            styles: [__webpack_require__(/*! ./calendar.component.css */ "./src/app/calendar/calendar.component.css")]
+            template: __webpack_require__(/*! ./calendar.component.html */ "./src/app/components/calendar/calendar.component.html"),
+            styles: [__webpack_require__(/*! ./calendar.component.css */ "./src/app/components/calendar/calendar.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], CalendarComponent);
@@ -235,21 +238,21 @@ var CalendarComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/map/map.component.css":
-/*!***************************************!*\
-  !*** ./src/app/map/map.component.css ***!
-  \***************************************/
+/***/ "./src/app/components/map/map.component.css":
+/*!**************************************************!*\
+  !*** ./src/app/components/map/map.component.css ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".map {\n    position: absolute;\n    left: 50%;\n    display: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbWFwL21hcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksbUJBQW1CO0lBQ25CLFVBQVU7SUFDVixjQUFjO0NBQ2pCIiwiZmlsZSI6InNyYy9hcHAvbWFwL21hcC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1hcCB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIGxlZnQ6IDUwJTtcbiAgICBkaXNwbGF5OiBub25lO1xufSJdfQ== */"
+module.exports = ".map {\n    position: absolute;\n    left: 50%;\n    display: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9tYXAvbWFwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxtQkFBbUI7SUFDbkIsVUFBVTtJQUNWLGNBQWM7Q0FDakIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL21hcC9tYXAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXAge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgZGlzcGxheTogbm9uZTtcbn0iXX0= */"
 
 /***/ }),
 
-/***/ "./src/app/map/map.component.html":
-/*!****************************************!*\
-  !*** ./src/app/map/map.component.html ***!
-  \****************************************/
+/***/ "./src/app/components/map/map.component.html":
+/*!***************************************************!*\
+  !*** ./src/app/components/map/map.component.html ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -257,10 +260,10 @@ module.exports = "<div class=\"map\">\n    <div #gmap style=\"width:600px;height
 
 /***/ }),
 
-/***/ "./src/app/map/map.component.ts":
-/*!**************************************!*\
-  !*** ./src/app/map/map.component.ts ***!
-  \**************************************/
+/***/ "./src/app/components/map/map.component.ts":
+/*!*************************************************!*\
+  !*** ./src/app/components/map/map.component.ts ***!
+  \*************************************************/
 /*! exports provided: MapComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -296,8 +299,8 @@ var MapComponent = /** @class */ (function () {
     MapComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-map',
-            template: __webpack_require__(/*! ./map.component.html */ "./src/app/map/map.component.html"),
-            styles: [__webpack_require__(/*! ./map.component.css */ "./src/app/map/map.component.css")]
+            template: __webpack_require__(/*! ./map.component.html */ "./src/app/components/map/map.component.html"),
+            styles: [__webpack_require__(/*! ./map.component.css */ "./src/app/components/map/map.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], MapComponent);
@@ -308,21 +311,21 @@ var MapComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/schedule-form/schedule-form.component.css":
-/*!***********************************************************!*\
-  !*** ./src/app/schedule-form/schedule-form.component.css ***!
-  \***********************************************************/
+/***/ "./src/app/components/schedule-form/schedule-form.component.css":
+/*!**********************************************************************!*\
+  !*** ./src/app/components/schedule-form/schedule-form.component.css ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "input {\n    outline: none;\n    max-width: 200px;\n    max-height: 25px;\n}\n\n.checkbox:checked{\n    content: '\\f10c';\n    font: 1.5em 'FontAwesome';\n}\n\n.personal-info {\n    display: inline-block;\n    padding-left: 30%;\n    padding-top: 50px;\n}\n\n.form-group {\n    position: relative;\n    max-width: 200px;\n}\n\n.submit-button {\n    display: inline-block;\n    position: relative;\n    padding-left: 50px;\n}\n\nbutton {\n    position: inline-block;\n    width: 100px;   \n    background: #FFFF;\n    color: #000\n}\n\n#form-sessions {\n    max-width: 300px;\n    position: relative;\n    display: inline-block;\n    padding-left: 100px;\n}\n\n#session-box:hover {\nopacity: 0.6;\n/* border: 1px solid #e3e3e3; */\nborder-radius: 5px;\n}\n\n#session-box {\n    position: relative;\n    width: 200px;\n    max-height: 30px;\n}\n\n#session-box::after {\n    position: absolute;\n    content: '';\n    top:0;\n    left: 0;\n    width: 0;\n    height: 100%;\n    background-color: rgb(252, 238, 112);\n    -webkit-transform-origin:left;\n            transform-origin:left;\n    transition:width 0.20s ease;\n    z-index:-1;\n  }\n\n#session-box:hover::after {\n    width: 100%;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2NoZWR1bGUtZm9ybS9zY2hlZHVsZS1mb3JtLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxjQUFjO0lBQ2QsaUJBQWlCO0lBQ2pCLGlCQUFpQjtDQUNwQjs7QUFFRDtJQUNJLGlCQUFpQjtJQUNqQiwwQkFBMEI7Q0FDN0I7O0FBRUQ7SUFDSSxzQkFBc0I7SUFDdEIsa0JBQWtCO0lBQ2xCLGtCQUFrQjtDQUNyQjs7QUFFRDtJQUNJLG1CQUFtQjtJQUNuQixpQkFBaUI7Q0FDcEI7O0FBRUQ7SUFDSSxzQkFBc0I7SUFDdEIsbUJBQW1CO0lBQ25CLG1CQUFtQjtDQUN0Qjs7QUFFRDtJQUNJLHVCQUF1QjtJQUN2QixhQUFhO0lBQ2Isa0JBQWtCO0lBQ2xCLFdBQVc7Q0FDZDs7QUFFRDtJQUNJLGlCQUFpQjtJQUNqQixtQkFBbUI7SUFDbkIsc0JBQXNCO0lBQ3RCLG9CQUFvQjtDQUN2Qjs7QUFFRDtBQUNBLGFBQWE7QUFDYixnQ0FBZ0M7QUFDaEMsbUJBQW1CO0NBQ2xCOztBQUdEO0lBQ0ksbUJBQW1CO0lBQ25CLGFBQWE7SUFDYixpQkFBaUI7Q0FDcEI7O0FBRUQ7SUFDSSxtQkFBbUI7SUFDbkIsWUFBWTtJQUNaLE1BQU07SUFDTixRQUFRO0lBQ1IsU0FBUztJQUNULGFBQWE7SUFDYixxQ0FBcUM7SUFDckMsOEJBQXNCO1lBQXRCLHNCQUFzQjtJQUN0Qiw0QkFBNEI7SUFDNUIsV0FBVztHQUNaOztBQUVEO0lBQ0UsWUFBWTtHQUNiIiwiZmlsZSI6InNyYy9hcHAvc2NoZWR1bGUtZm9ybS9zY2hlZHVsZS1mb3JtLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpbnB1dCB7XG4gICAgb3V0bGluZTogbm9uZTtcbiAgICBtYXgtd2lkdGg6IDIwMHB4O1xuICAgIG1heC1oZWlnaHQ6IDI1cHg7XG59XG5cbi5jaGVja2JveDpjaGVja2Vke1xuICAgIGNvbnRlbnQ6ICdcXGYxMGMnO1xuICAgIGZvbnQ6IDEuNWVtICdGb250QXdlc29tZSc7XG59XG5cbi5wZXJzb25hbC1pbmZvIHtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgcGFkZGluZy1sZWZ0OiAzMCU7XG4gICAgcGFkZGluZy10b3A6IDUwcHg7XG59XG5cbi5mb3JtLWdyb3VwIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWF4LXdpZHRoOiAyMDBweDtcbn1cblxuLnN1Ym1pdC1idXR0b24ge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgcGFkZGluZy1sZWZ0OiA1MHB4O1xufVxuXG5idXR0b24ge1xuICAgIHBvc2l0aW9uOiBpbmxpbmUtYmxvY2s7XG4gICAgd2lkdGg6IDEwMHB4OyAgIFxuICAgIGJhY2tncm91bmQ6ICNGRkZGO1xuICAgIGNvbG9yOiAjMDAwXG59XG5cbiNmb3JtLXNlc3Npb25zIHtcbiAgICBtYXgtd2lkdGg6IDMwMHB4O1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgcGFkZGluZy1sZWZ0OiAxMDBweDtcbn1cblxuI3Nlc3Npb24tYm94OmhvdmVyIHtcbm9wYWNpdHk6IDAuNjtcbi8qIGJvcmRlcjogMXB4IHNvbGlkICNlM2UzZTM7ICovXG5ib3JkZXItcmFkaXVzOiA1cHg7XG59XG5cblxuI3Nlc3Npb24tYm94IHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgd2lkdGg6IDIwMHB4O1xuICAgIG1heC1oZWlnaHQ6IDMwcHg7XG59XG5cbiNzZXNzaW9uLWJveDo6YWZ0ZXIge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBjb250ZW50OiAnJztcbiAgICB0b3A6MDtcbiAgICBsZWZ0OiAwO1xuICAgIHdpZHRoOiAwO1xuICAgIGhlaWdodDogMTAwJTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjUyLCAyMzgsIDExMik7XG4gICAgdHJhbnNmb3JtLW9yaWdpbjpsZWZ0O1xuICAgIHRyYW5zaXRpb246d2lkdGggMC4yMHMgZWFzZTtcbiAgICB6LWluZGV4Oi0xO1xuICB9XG4gIFxuICAjc2Vzc2lvbi1ib3g6aG92ZXI6OmFmdGVyIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgfSJdfQ== */"
+module.exports = "input {\n    outline: none;\n    max-width: 200px;\n    max-height: 25px;\n}\n\n.checkbox:checked{\n    content: '\\f10c';\n    font: 1.5em 'FontAwesome';\n}\n\n.personal-info {\n    display: inline-block;\n    padding-left: 30%;\n    padding-top: 50px;\n}\n\n.form-group {\n    position: relative;\n    max-width: 200px;\n}\n\n.submit-button {\n    display: inline-block;\n    position: relative;\n    padding-left: 50px;\n}\n\nbutton {\n    position: inline-block;\n    width: 100px;   \n    background: #FFFF;\n    color: #000\n}\n\n#form-sessions {\n    max-width: 300px;\n    position: relative;\n    display: inline-block;\n    padding-left: 100px;\n}\n\n#session-box:hover {\nopacity: 0.6;\n/* border: 1px solid #e3e3e3; */\nborder-radius: 5px;\n}\n\n#session-box {\n    position: relative;\n    width: 200px;\n    max-height: 30px;\n}\n\n#session-box::after {\n    position: absolute;\n    content: '';\n    top:0;\n    left: 0;\n    width: 0;\n    height: 100%;\n    background-color: rgb(252, 238, 112);\n    -webkit-transform-origin:left;\n            transform-origin:left;\n    transition:width 0.20s ease;\n    z-index:-1;\n  }\n\n#session-box:hover::after {\n    width: 100%;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zY2hlZHVsZS1mb3JtL3NjaGVkdWxlLWZvcm0uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGNBQWM7SUFDZCxpQkFBaUI7SUFDakIsaUJBQWlCO0NBQ3BCOztBQUVEO0lBQ0ksaUJBQWlCO0lBQ2pCLDBCQUEwQjtDQUM3Qjs7QUFFRDtJQUNJLHNCQUFzQjtJQUN0QixrQkFBa0I7SUFDbEIsa0JBQWtCO0NBQ3JCOztBQUVEO0lBQ0ksbUJBQW1CO0lBQ25CLGlCQUFpQjtDQUNwQjs7QUFFRDtJQUNJLHNCQUFzQjtJQUN0QixtQkFBbUI7SUFDbkIsbUJBQW1CO0NBQ3RCOztBQUVEO0lBQ0ksdUJBQXVCO0lBQ3ZCLGFBQWE7SUFDYixrQkFBa0I7SUFDbEIsV0FBVztDQUNkOztBQUVEO0lBQ0ksaUJBQWlCO0lBQ2pCLG1CQUFtQjtJQUNuQixzQkFBc0I7SUFDdEIsb0JBQW9CO0NBQ3ZCOztBQUVEO0FBQ0EsYUFBYTtBQUNiLGdDQUFnQztBQUNoQyxtQkFBbUI7Q0FDbEI7O0FBR0Q7SUFDSSxtQkFBbUI7SUFDbkIsYUFBYTtJQUNiLGlCQUFpQjtDQUNwQjs7QUFFRDtJQUNJLG1CQUFtQjtJQUNuQixZQUFZO0lBQ1osTUFBTTtJQUNOLFFBQVE7SUFDUixTQUFTO0lBQ1QsYUFBYTtJQUNiLHFDQUFxQztJQUNyQyw4QkFBc0I7WUFBdEIsc0JBQXNCO0lBQ3RCLDRCQUE0QjtJQUM1QixXQUFXO0dBQ1o7O0FBRUQ7SUFDRSxZQUFZO0dBQ2IiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3NjaGVkdWxlLWZvcm0vc2NoZWR1bGUtZm9ybS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW5wdXQge1xuICAgIG91dGxpbmU6IG5vbmU7XG4gICAgbWF4LXdpZHRoOiAyMDBweDtcbiAgICBtYXgtaGVpZ2h0OiAyNXB4O1xufVxuXG4uY2hlY2tib3g6Y2hlY2tlZHtcbiAgICBjb250ZW50OiAnXFxmMTBjJztcbiAgICBmb250OiAxLjVlbSAnRm9udEF3ZXNvbWUnO1xufVxuXG4ucGVyc29uYWwtaW5mbyB7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIHBhZGRpbmctbGVmdDogMzAlO1xuICAgIHBhZGRpbmctdG9wOiA1MHB4O1xufVxuXG4uZm9ybS1ncm91cCB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIG1heC13aWR0aDogMjAwcHg7XG59XG5cbi5zdWJtaXQtYnV0dG9uIHtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIHBhZGRpbmctbGVmdDogNTBweDtcbn1cblxuYnV0dG9uIHtcbiAgICBwb3NpdGlvbjogaW5saW5lLWJsb2NrO1xuICAgIHdpZHRoOiAxMDBweDsgICBcbiAgICBiYWNrZ3JvdW5kOiAjRkZGRjtcbiAgICBjb2xvcjogIzAwMFxufVxuXG4jZm9ybS1zZXNzaW9ucyB7XG4gICAgbWF4LXdpZHRoOiAzMDBweDtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIHBhZGRpbmctbGVmdDogMTAwcHg7XG59XG5cbiNzZXNzaW9uLWJveDpob3ZlciB7XG5vcGFjaXR5OiAwLjY7XG4vKiBib3JkZXI6IDFweCBzb2xpZCAjZTNlM2UzOyAqL1xuYm9yZGVyLXJhZGl1czogNXB4O1xufVxuXG5cbiNzZXNzaW9uLWJveCB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIHdpZHRoOiAyMDBweDtcbiAgICBtYXgtaGVpZ2h0OiAzMHB4O1xufVxuXG4jc2Vzc2lvbi1ib3g6OmFmdGVyIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgY29udGVudDogJyc7XG4gICAgdG9wOjA7XG4gICAgbGVmdDogMDtcbiAgICB3aWR0aDogMDtcbiAgICBoZWlnaHQ6IDEwMCU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDI1MiwgMjM4LCAxMTIpO1xuICAgIHRyYW5zZm9ybS1vcmlnaW46bGVmdDtcbiAgICB0cmFuc2l0aW9uOndpZHRoIDAuMjBzIGVhc2U7XG4gICAgei1pbmRleDotMTtcbiAgfVxuICBcbiAgI3Nlc3Npb24tYm94OmhvdmVyOjphZnRlciB7XG4gICAgd2lkdGg6IDEwMCU7XG4gIH0iXX0= */"
 
 /***/ }),
 
-/***/ "./src/app/schedule-form/schedule-form.component.html":
-/*!************************************************************!*\
-  !*** ./src/app/schedule-form/schedule-form.component.html ***!
-  \************************************************************/
+/***/ "./src/app/components/schedule-form/schedule-form.component.html":
+/*!***********************************************************************!*\
+  !*** ./src/app/components/schedule-form/schedule-form.component.html ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -330,10 +333,10 @@ module.exports = "<form [formGroup]=\"registerForm\" (ngSubmit)=\"onSubmit()\">\
 
 /***/ }),
 
-/***/ "./src/app/schedule-form/schedule-form.component.ts":
-/*!**********************************************************!*\
-  !*** ./src/app/schedule-form/schedule-form.component.ts ***!
-  \**********************************************************/
+/***/ "./src/app/components/schedule-form/schedule-form.component.ts":
+/*!*********************************************************************!*\
+  !*** ./src/app/components/schedule-form/schedule-form.component.ts ***!
+  \*********************************************************************/
 /*! exports provided: ScheduleFormComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -389,8 +392,8 @@ var ScheduleFormComponent = /** @class */ (function () {
     ScheduleFormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-schedule-form',
-            template: __webpack_require__(/*! ./schedule-form.component.html */ "./src/app/schedule-form/schedule-form.component.html"),
-            styles: [__webpack_require__(/*! ./schedule-form.component.css */ "./src/app/schedule-form/schedule-form.component.css")]
+            template: __webpack_require__(/*! ./schedule-form.component.html */ "./src/app/components/schedule-form/schedule-form.component.html"),
+            styles: [__webpack_require__(/*! ./schedule-form.component.css */ "./src/app/components/schedule-form/schedule-form.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
     ], ScheduleFormComponent);
