@@ -11,8 +11,8 @@ router.get('/slots', async (req, res) => {
 
 router.patch('/slots/:id', async (req, res) => {
   const { id } = req.params;
-  const { fullName, email, phone } = req.body;
-  const results = await scheduleEvent(id, fullName, email, phone);
+  const { fullName, email, phone, quantity } = req.body;
+  const results = await scheduleEvent(id, fullName, email, phone, quantity);
   res.json({ results });
 });
 
