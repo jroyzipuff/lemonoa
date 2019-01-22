@@ -23,9 +23,9 @@
     </div>
   </div>
     <div id="form-sessions">
-    <label id="session-box" formArrayName="availableSessions" *ngFor="let session of sessions; let i = index" [ngClass]="{ 'is-invalid': submitted && f.availableSessions.errors }">
+    <label id="session-box" formArrayName="availableSlots" *ngFor="let slot of slots; let i = index" [ngClass]="{ 'is-invalid': submitted && f.availableSlots.errors }">
         <input class="checkbox" type="checkbox" [formControlName]="i">
-        {{session['name']}}
+        {{slots['start']['dateTime']}}
         <div id="session-option">
    
         </div>

@@ -74,7 +74,7 @@ module.exports = ".head {\n    font-size: 25px;\n    padding: 50px;\n}\n\n.sched
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"head\"> LEMONOA \n        <div class=\"lemonicon-container\">\n                <img id=\"lemonicon\" src=\"../assets/lemon.png\">\n        </div>\n</div>\n\n<div class=\"main\">\n        <div class=\"story\"> <h2> Challenging, super fun, and satisfying pilates </h2> </div>\n        <div class=\"schedule-button-container\">\n            <button class=\"schedule-button\" [class.active]=\"formOpen\" (click)=\"onRequestFormClick()\"> Do Pilates! </button>\n        </div>\n</div>\n<!-- <app-map *ngIf=\"formOpen\"></app-map> -->\n<app-schedule-form (submitPayload)=scheduleSlot($event) *ngIf=\"formOpen\"></app-schedule-form>\n<router-outlet></router-outlet>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"head\"> LEMONOA \n        <div class=\"lemonicon-container\">\n                <img id=\"lemonicon\" src=\"../assets/lemon.png\">\n        </div>\n</div>\n\n<div class=\"main\">\n        <div class=\"story\"> <h2> Challenging, super fun, and satisfying pilates </h2> </div>\n        <div class=\"schedule-button-container\">\n            <button class=\"schedule-button\" [class.active]=\"formOpen\" (click)=\"onRequestFormClick()\"> Do Pilates! </button>\n        </div>\n</div>\n<!-- <app-map *ngIf=\"formOpen\"></app-map> -->\n<app-schedule-form  [slots]=\"slots\" (submitPayload)=\"scheduleSlot($event)\" *ngIf=\"formOpen\"></app-schedule-form>\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -99,13 +99,23 @@ var AppComponent = /** @class */ (function () {
         this.slotsService = slotsService;
         this.title = 'lemonoa';
         this.formOpen = false;
+        this.slots = {};
     }
-    AppComponent.prototype.onRequestFormClick = function () {
+    AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.slotsService.availableSlots.subscribe(function (slots) {
             console.log(slots);
+            _this.slots = slots;
         });
-        this.formOpen = !this.formOpen;
-        this.slotsService.getSlots();
+    };
+    AppComponent.prototype.onRequestFormClick = function () {
+        if (this.formOpen) {
+            this.formOpen = !this.formOpen;
+        }
+        else {
+            this.slotsService.getSlots();
+            this.formOpen = !this.formOpen;
+        }
     };
     AppComponent.prototype.scheduleSlot = function (data) {
         this.slotsService.scheduleSlot(data);
@@ -281,7 +291,7 @@ module.exports = "input {\n    outline: none;\n    max-width: 200px;\n    max-he
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"registerForm\" (ngSubmit)=\"onSubmit()\">\n  <div class=\"personal-info\">\n    <div class=\"form-group\">\n        <label>Full Name</label>\n        <input type=\"text\" formControlName=\"fullName\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.fullName.errors }\" />\n        <div *ngIf=\"submitted && f['fullName'].errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f['fullName'].errors.required\">:(</div>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label>Email</label>\n        <input type=\"text\" formControlName=\"email\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.email.errors }\" />\n        <div *ngIf=\"submitted && f['email'].errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f['email'].errors.required\">:(</div>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label>Phone</label>\n        <input type=\"text\" formControlName=\"phone\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.phone.errors }\" />\n        <div *ngIf=\"submitted && f['phone'].errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f['phone'].errors.required\">:(</div>\n        </div>\n    </div>\n  </div>\n    <div id=\"form-sessions\">\n    <label id=\"session-box\" formArrayName=\"availableSessions\" *ngFor=\"let session of sessions; let i = index\" [ngClass]=\"{ 'is-invalid': submitted && f.availableSessions.errors }\">\n        <input class=\"checkbox\" type=\"checkbox\" [formControlName]=\"i\">\n        {{session['name']}}\n        <div id=\"session-option\">\n   \n        </div>\n    </label>\n  </div>\n  <div class=\"submit-button\">\n      <button (click)=\"onSubmit()\">Schedule</button>\n  </div>\n\n  </form>\n    "
+module.exports = "<form [formGroup]=\"registerForm\" (ngSubmit)=\"onSubmit()\">\n  <div class=\"personal-info\">\n    <div class=\"form-group\">\n        <label>Full Name</label>\n        <input type=\"text\" formControlName=\"fullName\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.fullName.errors }\" />\n        <div *ngIf=\"submitted && f['fullName'].errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f['fullName'].errors.required\">:(</div>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label>Email</label>\n        <input type=\"text\" formControlName=\"email\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.email.errors }\" />\n        <div *ngIf=\"submitted && f['email'].errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f['email'].errors.required\">:(</div>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label>Phone</label>\n        <input type=\"text\" formControlName=\"phone\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.phone.errors }\" />\n        <div *ngIf=\"submitted && f['phone'].errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f['phone'].errors.required\">:(</div>\n        </div>\n    </div>\n  </div>\n    <div id=\"form-sessions\">\n    <label id=\"session-box\" formArrayName=\"availableSlots\" *ngFor=\"let slot of slots; let i = index\" [ngClass]=\"{ 'is-invalid': submitted && f.availableSlots.errors }\">\n        <input class=\"checkbox\" type=\"checkbox\" [formControlName]=\"i\">\n        {{slots['start']['dateTime']}}\n        <div id=\"session-option\">\n   \n        </div>\n    </label>\n  </div>\n  <div class=\"submit-button\">\n      <button (click)=\"onSubmit()\">Schedule</button>\n  </div>\n\n  </form>\n    "
 
 /***/ }),
 
@@ -302,25 +312,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ScheduleFormComponent = /** @class */ (function () {
+    // sessions = [
+    //   { id: 354252454, name: 'Tuesday 18:00' },
+    //   { id: 425245245, name: 'Tuesday 19:00' },
+    //   { id: 134134134, name: 'Wednesday: 17:00' },
+    //   { id: 234242344, name: 'Thursday 17:00' }];
     function ScheduleFormComponent(formBuilder) {
         this.formBuilder = formBuilder;
         this.submitted = false;
         this.submitPayload = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.sessions = [
-            { id: 354252454, name: 'Tuesday 18:00' },
-            { id: 425245245, name: 'Tuesday 19:00' },
-            { id: 134134134, name: 'Wednesday: 17:00' },
-            { id: 234242344, name: 'Thursday 17:00' }
-        ];
+        this.slots = [];
     }
     ScheduleFormComponent.prototype.ngOnInit = function () {
-        var sessions = this.sessions.map(function (s) { return new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](false); });
+        var slotsForSelection = this.slots.map(function (s) { return new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](false); });
         // sessions[0].setValue(true); // Set the first checkbox to true (checked)
         this.registerForm = this.formBuilder.group({
             fullName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(2)]],
             email: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(5)]],
             phone: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(10)]],
-            availableSessions: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormArray"](sessions)
+            availableSessions: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormArray"](slotsForSelection)
         });
     };
     Object.defineProperty(ScheduleFormComponent.prototype, "f", {
@@ -332,7 +342,7 @@ var ScheduleFormComponent = /** @class */ (function () {
         var _this = this;
         this.submitted = true;
         var scheduledSlots = this.registerForm.value.availableSessions
-            .map(function (v, i) { return v ? _this.sessions[i].id : null; })
+            .map(function (v, i) { return v ? _this.slots[i].id : null; })
             .filter(function (v) { return v !== null; });
         if (this.registerForm.invalid) {
             return;
@@ -350,6 +360,10 @@ var ScheduleFormComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
     ], ScheduleFormComponent.prototype, "submitPayload", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], ScheduleFormComponent.prototype, "slots", void 0);
     ScheduleFormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-schedule-form',
@@ -396,7 +410,6 @@ var SlotsService = /** @class */ (function () {
         });
     };
     SlotsService.prototype.scheduleSlot = function (payload) {
-        console.log('Service got payload:', payload);
         this.http.put(this.baseUrl, payload);
     };
     SlotsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

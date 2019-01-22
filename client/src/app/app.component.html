@@ -12,5 +12,5 @@
         </div>
 </div>
 <!-- <app-map *ngIf="formOpen"></app-map> -->
-<app-schedule-form (submitPayload)=scheduleSlot($event) *ngIf="formOpen"></app-schedule-form>
+<app-schedule-form  [slots]="slots" (submitPayload)="scheduleSlot($event)" *ngIf="formOpen"></app-schedule-form>
 <router-outlet></router-outlet>
