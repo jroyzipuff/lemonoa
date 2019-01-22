@@ -34,7 +34,7 @@ export class ScheduleFormComponent implements OnInit {
           fullName: ['', [Validators.required, Validators.minLength(2)]],
           email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
           phone: ['', [Validators.required, Validators.minLength(10)]],
-          availableSessions: new FormArray(slotsForSelection)
+          availableSlots: new FormArray(slotsForSelection)
       });
   }
 
@@ -42,7 +42,7 @@ export class ScheduleFormComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-      const scheduledSlots = this.registerForm.value.availableSessions
+      const scheduledSlots = this.registerForm.value.availableSlots
       .map((v, i) => v ? this.slots[i].id : null)
       .filter(v => v !== null);
     if (this.registerForm.invalid) {
