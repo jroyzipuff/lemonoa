@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 export class SlotsService {
   constructor(private http: HttpClient) { }
 
-  public availableSlots = new BehaviorSubject<Object>({});
+  public availableSlots = new BehaviorSubject<Object>([]);
   baseUrl = '/api/v1/slots';
   getSlots() {
     return this.http.get(this.baseUrl).subscribe((data) => {
@@ -14,7 +14,9 @@ export class SlotsService {
     });
   }
    scheduleSlot(payload) {
-      this.http.put(this.baseUrl, payload);
+      return this.http.patch(this.baseUrl + '/' + payload.id, payload).subscribe((res) => {
+        console.log('put slot!');
+      });
   }
 }
 

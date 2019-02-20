@@ -23,11 +23,10 @@
     </div>
   </div>
     <div id="form-sessions">
-    <label id="session-box" formArrayName="availableSlots" *ngFor="let slot of slots; let i = index" [ngClass]="{ 'is-invalid': submitted && f.availableSlots.errors }">
-        <input class="checkbox" type="checkbox" [formControlName]="i">
-        {{slots['start']['dateTime']}}
+    <label id="session-box" *ngFor="let slot of slots; let i = index">
+        <input class="checkbox" (click)="chosenSlot = slot" [checked]="chosenSlot == slot" type="checkbox">
+        {{parseDateMonth(slot.start.dateTime)}} - {{parseHour(slot.end.dateTime)}}
         <div id="session-option">
-   
         </div>
     </label>
   </div>

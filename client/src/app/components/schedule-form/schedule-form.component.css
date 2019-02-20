@@ -5,7 +5,7 @@ input {
 }
 
 .checkbox:checked{
-    content: '\f10c';
+    /* content: '\f10c'; */
     font: 1.5em 'FontAwesome';
 }
 

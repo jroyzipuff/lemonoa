@@ -9,24 +9,22 @@ import { SlotsService } from './services/data-provider.service';
 export class AppComponent implements OnInit {
   title = 'lemonoa';
   formOpen = false;
-  slots = {};
+  slots: any;
 
   constructor(private slotsService: SlotsService) {}
 
   ngOnInit() {
     this.slotsService.availableSlots.subscribe((slots) => {
-      console.log(slots);
       this.slots = slots;
     });
   }
 
   onRequestFormClick() {
-    if (this.formOpen) {
-      this.formOpen = !this.formOpen;
-    } else {
+    if (!this.formOpen) {
       this.slotsService.getSlots();
-      this.formOpen = !this.formOpen;
+      console.log(this.slots);
     }
+    this.formOpen = !this.formOpen;
   }
 
   scheduleSlot(data) {
