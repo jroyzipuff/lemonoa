@@ -11,7 +11,10 @@ export class ScheduleFormComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   chosenSlot;
+  selectedAttendees;
   moment: moment.Moment;
+  attendeeSlot = '../../../assets/attendee-ico.png';
+  attendeeSelectedSlot = '../../../assets/attendee-ico-selected.png';
 
   @Output()
   submitPayload = new EventEmitter();
@@ -27,17 +30,21 @@ export class ScheduleFormComponent implements OnInit {
     // sessions[0].setValue(true); // Set the first checkbox to true (checked)
     this.registerForm = this.formBuilder.group({
         fullName: ['', [Validators.required, Validators.minLength(2)]],
-        email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
+        email: ['', [Validators.email, Validators.minLength(5)]],
         phone: ['', [Validators.required, Validators.minLength(10)]]
     });
   }
 
   parseDateMonth(date) {
-    return moment(date).format('DD/MM HH:mm');
+    return moment(date).format('DD/MM hh:mm A');
   }
 
   parseHour(date) {
-    return moment(date).format('HH:mm');
+    return moment(date).format('hh:mm A');
+  }
+
+  parseWeekDay(date) {
+    return moment(date).format('ddd');
   }
 
   onSubmit() {
@@ -49,6 +56,7 @@ export class ScheduleFormComponent implements OnInit {
       'id': this.chosenSlot.id,
       'email': this.f['email'].value,
       'fullName': this.f['fullName'].value,
-      'phone': this.f['phone'].value });
+      'phone': this.f['phone'].value,
+      'attendees': this.selectedAttendees});
     }
 }}
