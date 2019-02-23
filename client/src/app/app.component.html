@@ -11,6 +11,6 @@
             <button class="schedule-button" [class.active]="formOpen" (click)="onRequestFormClick()"> Do Pilates! </button>
         </div>
 </div>
-<!-- <app-map *ngIf="formOpen"></app-map> -->
+<ngx-loading [show]="loading" [config]="{'fullScreenBackdrop':false, 'backdropBackgroundColour': 'rgba(0,0,0,0)'}"></ngx-loading>
 <app-schedule-form  [slots]="slots" (submitPayload)="scheduleSlot($event)" *ngIf="formOpen"></app-schedule-form>
 <router-outlet></router-outlet>

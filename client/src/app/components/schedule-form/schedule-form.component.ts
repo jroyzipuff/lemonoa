@@ -11,7 +11,7 @@ export class ScheduleFormComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   chosenSlot;
-  selectedAttendees;
+  selectedAttendees = 1;
   moment: moment.Moment;
   attendeeSlot = '../../../assets/attendee-ico.png';
   attendeeSelectedSlot = '../../../assets/attendee-ico-selected.png';

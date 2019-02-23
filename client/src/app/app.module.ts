@@ -10,7 +10,7 @@ import { ScheduleFormComponent } from './components/schedule-form/schedule-form.
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SlotsService } from './services/data-provider.service';
-
+import { NgxLoadingModule } from 'ngx-loading';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +21,7 @@ import { SlotsService } from './services/data-provider.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxLoadingModule.forRoot({}),
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory

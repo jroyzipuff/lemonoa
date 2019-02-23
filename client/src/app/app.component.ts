@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SlotsService } from './services/data-provider.service';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ export class AppComponent implements OnInit {
   title = 'lemonoa';
   formOpen = false;
   slots: any;
+  public loading = false;
 
   constructor(private slotsService: SlotsService) {}
 
@@ -21,8 +23,9 @@ export class AppComponent implements OnInit {
 
   onRequestFormClick() {
     if (!this.formOpen) {
+      this.loading = !this.loading;
       this.slotsService.getSlots();
-      console.log(this.slots);
+      this.loading = !this.loading;
     }
     this.formOpen = !this.formOpen;
   }
