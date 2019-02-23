@@ -12,7 +12,6 @@
     text-decoration: none;
     background: #ffe578;
     color: #ffffff;
-    font-family: sans-serif;
     font-size: 1rem;
     cursor: pointer;
     text-align: center;
@@ -35,7 +34,6 @@
 }
 
 .main {
-    margin-top: 100px;
     text-align: center;
 }
 

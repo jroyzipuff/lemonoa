@@ -1,17 +1,16 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="head"> LEMONOA 
-                <div class="lemonicon-container">
-                                <img id="lemonicon" src="../assets/lemon.png">
-                        </div>
+<div class="head"> FUOCO
+        <div class="lemonicon-container">
+                <img id="lemonicon" src="../assets/lemon.png">
+        </div>
 </div>
 
 <div class="main">
         <div class="story"> <h2> Challenging, super fun, and satisfying pilates </h2> </div>
         <div class="schedule-button-container">
-            <button class="schedule-button" [class.active]="scheduleClicked" (click)="onScheduleClick()"> Do Pilates! </button>
+            <button class="schedule-button" [class.active]="formOpen" (click)="onRequestFormClick()"> Do Pilates! </button>
         </div>
 </div>
-<app-map *ngIf="scheduleClicked"></app-map>
-<app-schedule-form *ngIf="scheduleClicked"></app-schedule-form>
-<app-calendar></app-calendar>
+<ngx-loading [show]="loading" [config]="{'fullScreenBackdrop':false, 'backdropBackgroundColour': 'rgba(0,0,0,0)'}"></ngx-loading>
+<app-schedule-form  [slots]="slots" (submitPayload)="scheduleSlot($event)" *ngIf="formOpen"></app-schedule-form>
 <router-outlet></router-outlet>

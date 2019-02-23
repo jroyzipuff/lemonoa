@@ -1,0 +1,38 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<div class="form">
+    <div class="personal-info">
+        <div class="form-group">
+                <label>Full Name*</label>
+                <input type="text" formControlName="fullName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }" />
+                <div *ngIf="submitted && f['fullName'].errors" class="invalid-feedback">
+                    <div *ngIf="f['fullName'].errors.required"></div>
+                </div>
+        </div>
+        <div class="form-group">
+                <label>Phone*</label>
+                <input type="text" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                <div *ngIf="submitted && f['phone'].errors" class="invalid-feedback">
+                    <div *ngIf="f['phone'].errors.required"></div>
+                </div>
+        </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" formControlName="email" class="form-control" />
+            </div>
+    </div>
+    <div id="session-grid">
+        <div id="form-sessions">
+                <div class="session-box" *ngFor="let slot of slots; let i = index" (click)="chosenSlot = slot" [class.active]="chosenSlot == slot">
+                    {{parseWeekDay(slot.start.dateTime)}} 
+                    {{parseDateMonth(slot.start.dateTime)}}
+                    <div>
+                            <span id="attendee" *ngFor="let i of [1,2,3];" (click)="selectedAttendees = i">
+                            <img class="attendee-ico" *ngIf="chosenSlot == slot" [src]="selectedAttendees >= i ? attendeeSelectedSlot : attendeeSlot"></span>
+                    </div>
+                </div> 
+            </div>
+    </div>
+</div>
+<div class="submit-button" (click)="onSubmit()">Schedule</div>
+  </form>
+    
