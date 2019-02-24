@@ -24,6 +24,7 @@ p {
 
 .attendee-ico {
     max-width: 40px;
+    margin: auto;
 }
 
 .submit-button {
@@ -32,24 +33,19 @@ p {
     padding: 1rem 2rem;
     margin: 0;
     text-decoration: none;
-    background: #ffe578;
+    color: white;
+    background: #88cc74;
     outline: none;
     position: relative;
     text-align: center;
     cursor: pointer;
 }
 
+
 #session-grid {
-    max-width: 700px;
+    max-width:  600px;
     position: relative;
     left: 25%;
-}
-
-#form-sessions {
-    display: flex;                     
-    /* flex-wrap: wrap;                     */
-    justify-content: space-around;
-        
 }
 
 .form {
@@ -65,7 +61,7 @@ border-radius: 5px;
 
 .session-box {
     position: relative;
-    width: 250px;
+    width: 100px;
     height: 195px;
     border: 1px solid white;
     margin-top: 5px;
@@ -75,6 +71,47 @@ border-radius: 5px;
     font-size: 13px;
 }
 
+.nav-btn {
+    height: 47px;
+    position: absolute;
+    width: 26px;
+    cursor: pointer;
+    top: 100px !important;
+  }
+
+  .prev-slide {
+    background: url(../../../assets/arrow-left.png) no-repeat scroll 0 0;
+    left: -33px;
+  }
+   
+  .next-slide {
+    background: url(../../../assets/arrow-right.png) no-repeat scroll -24px 0px;
+    right: -33px;
+  }
+   
+  .prev-slide:hover {
+    background-position: 0px -53px;
+  }
+   
+  .next-slide:hover {
+    background-position: -24px -53px;
+  }
+
+.prev-slide.slick-disabled,
+.next-slide.slick-disabled {
+    pointer-events: none;
+    opacity: 0.2;
+}                   
+
+.slick-slider {
+    outline: none;
+    max-width: 700px;
+    position: relative;
+  }  
+
+  .slick-slide {
+      outline: none;
+  }
 
 .session-box::after {
     position: absolute;

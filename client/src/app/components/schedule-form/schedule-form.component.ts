@@ -15,6 +15,14 @@ export class ScheduleFormComponent implements OnInit {
   moment: moment.Moment;
   attendeeSlot = '../../../assets/attendee-ico.png';
   attendeeSelectedSlot = '../../../assets/attendee-ico-selected.png';
+  slideConfig = {
+    'slidesToShow': 10,
+    'slidesToScroll': 1,
+    'nextArrow': '<div class="nav-btn next-slide"></div>',
+    'prevArrow': '<div class="nav-btn prev-slide"></div>',
+    'dots': true,
+    'infinite': false
+  };
 
   @Output()
   submitPayload = new EventEmitter();

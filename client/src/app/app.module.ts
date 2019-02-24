@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SlotsService } from './services/data-provider.service';
 import { NgxLoadingModule } from 'ngx-loading';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { NgxLoadingModule } from 'ngx-loading';
   ],
   imports: [
     BrowserModule,
+    SlickCarouselModule,
     AppRoutingModule,
     HttpClientModule,
     NgxLoadingModule.forRoot({}),

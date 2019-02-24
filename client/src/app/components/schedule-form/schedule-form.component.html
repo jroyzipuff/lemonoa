@@ -21,18 +21,19 @@
             </div>
     </div>
     <div id="session-grid">
-        <div id="form-sessions">
-                <div class="session-box" *ngFor="let slot of slots; let i = index" (click)="chosenSlot = slot" [class.active]="chosenSlot == slot">
+                <ngx-slick-carousel class="carousel" 
+                #slickModal="slick-carousel" 
+                [config]="slideConfig">
+                <div ngxSlickItem class="session-box" *ngFor="let slot of slots; let i = index" (click)="chosenSlot = slot" [class.active]="chosenSlot == slot">
                     {{parseWeekDay(slot.start.dateTime)}} 
                     {{parseDateMonth(slot.start.dateTime)}}
                     <div>
-                            <span id="attendee" *ngFor="let i of [1,2,3];" (click)="selectedAttendees = i">
-                            <img class="attendee-ico" *ngIf="chosenSlot == slot" [src]="selectedAttendees >= i ? attendeeSelectedSlot : attendeeSlot"></span>
+                            <div id="attendee" *ngFor="let i of [1,2,3];" (click)="selectedAttendees = i">
+                            <img class="attendee-ico" *ngIf="chosenSlot == slot" [src]="selectedAttendees >= i ? attendeeSelectedSlot : attendeeSlot"></div>
                     </div>
                 </div> 
-            </div>
+            </ngx-slick-carousel>
     </div>
 </div>
 <div class="submit-button" (click)="onSubmit()">Confirm</div>
-  </form>
     
