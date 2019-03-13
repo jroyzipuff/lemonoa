@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class SlotsService {
   constructor(private http: HttpClient) { }
-
   public availableSlots = new BehaviorSubject<Object>([]);
   baseUrl = '/api/v1/slots';
   getSlots() {

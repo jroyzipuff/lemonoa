@@ -1,6 +1,17 @@
 .head {
     font-size: 25px;
-    padding: 50px;
+    padding: 25px;
+}
+
+.head h2{
+    left: 100px;
+}
+
+.fuocoicon-container img {
+    position: relative;
+    width: 100px;
+    bottom: 140px;
+    z-index: -10;
 }
 
 .schedule-button  {
@@ -10,8 +21,8 @@
     padding: 1rem 2rem;
     margin: 0;
     text-decoration: none;
-    background: #ffe578;
-    color: #ffffff;
+    border: 1px solid black;
+    background: #fbfaea; 
     font-size: 1rem;
     cursor: pointer;
     text-align: center;
@@ -38,18 +49,24 @@
 }
 
 .schedule-button-container {
-    padding-top: 100px;
+    padding-top: 60px;
 }
 
-.lemonicon-container {
-position: absolute;
-top: -9px;
-z-index: -99;
-padding: 35px;
+#icon {
+    position: absolute;
+    max-width: 60px;
+    left: 40px;
+    top: 32px;
+    opacity: 0.5;
 }
 
-#lemonicon {
-    height: 110px;
-    width: 150px ;
+#fuoco {
+    position: relative;
+    left: 60px;
 }
 
+#takes-a-minute {
+    position: relative;
+    top: 5px;
+    font-size: 14px;
+}

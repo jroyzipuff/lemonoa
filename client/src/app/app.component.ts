@@ -23,9 +23,10 @@ export class AppComponent implements OnInit {
 
   onRequestFormClick() {
     if (!this.formOpen) {
-      this.loading = !this.loading;
-      this.slotsService.getSlots();
-      this.loading = !this.loading;
+      // this.loading = !this.loading;
+      if (!this.slotsService.availableSlots.value.toString()) {this.slotsService.getSlots();
+      }
+      // this.loading = !this.loading;
     }
     this.formOpen = !this.formOpen;
   }

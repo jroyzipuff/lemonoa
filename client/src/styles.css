@@ -3,5 +3,8 @@
 
 body{
     background-color: #fbfaea;
-    font-family:'Quicksand', sans-serif;
+    font-family:'Poiret One', sans-serif;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }

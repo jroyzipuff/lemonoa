@@ -2,21 +2,21 @@
 <div class="form">
     <div class="personal-info">
         <div class="form-group">
-                <label>Full Name*</label>
+                <label>FULL NAME *</label>
                 <input type="text" formControlName="fullName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }" />
                 <div *ngIf="submitted && f['fullName'].errors" class="invalid-feedback">
                     <div *ngIf="f['fullName'].errors.required"></div>
                 </div>
         </div>
         <div class="form-group">
-                <label>Phone*</label>
+                <label>PHONE *</label>
                 <input type="text" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
                 <div *ngIf="submitted && f['phone'].errors" class="invalid-feedback">
                     <div *ngIf="f['phone'].errors.required"></div>
                 </div>
         </div>
             <div class="form-group">
-                <label>Email</label>
+                <label>EMAIL</label>
                 <input type="text" formControlName="email" class="form-control" />
             </div>
     </div>
@@ -24,16 +24,19 @@
                 <ngx-slick-carousel class="carousel" 
                 #slickModal="slick-carousel" 
                 [config]="slideConfig">
-                <div ngxSlickItem class="session-box" *ngFor="let slot of slots; let i = index" (click)="chosenSlot = slot" [class.active]="chosenSlot == slot">
-                    {{parseWeekDay(slot.start.dateTime)}} 
-                    {{parseDateMonth(slot.start.dateTime)}}
-                    <div>
+                <div ngxSlickItem class="session-box" *ngFor="let slot of slots; let i = index" (click)="chosenSlot = slot">
+                    <div id="slot-header"><b>{{slot[0]}}</b></div>
+                    <div id="hours-container">
+                        <div id="hours" (click)="chosenHour = slotHour" [class.active]="chosenHour == slotHour && chosenSlot == slot" *ngFor="let slotHour of slot[1];"> {{slotHour}}</div>
+                        <div>
+                            <div class="attendees-header" *ngIf="chosenSlot == slot"> Participants </div>
+                            <div class="attendees-header" *ngIf="chosenSlot == slot"> x </div>
                             <div id="attendee" *ngFor="let i of [1,2,3];" (click)="selectedAttendees = i">
                             <img class="attendee-ico" *ngIf="chosenSlot == slot" [src]="selectedAttendees >= i ? attendeeSelectedSlot : attendeeSlot"></div>
+                        </div>
                     </div>
                 </div> 
             </ngx-slick-carousel>
     </div>
 </div>
-<div class="submit-button" (click)="onSubmit()">Confirm</div>
-    
+    <div class="submit-button" [class.invalid]="registerForm.status == 'INVALID' || !this.chosenSlot" (click)="onSubmit()">Confirm</div>

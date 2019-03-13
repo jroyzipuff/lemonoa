@@ -11,13 +11,14 @@ export class ScheduleFormComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   chosenSlot;
+  chosenHour;
   selectedAttendees = 1;
   moment: moment.Moment;
   attendeeSlot = '../../../assets/attendee-ico.png';
   attendeeSelectedSlot = '../../../assets/attendee-ico-selected.png';
   slideConfig = {
-    'slidesToShow': 10,
-    'slidesToScroll': 1,
+    'slidesToShow': 7,
+    'slidesToScroll': 7,
     'nextArrow': '<div class="nav-btn next-slide"></div>',
     'prevArrow': '<div class="nav-btn prev-slide"></div>',
     'dots': true,
@@ -35,7 +36,6 @@ export class ScheduleFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    // sessions[0].setValue(true); // Set the first checkbox to true (checked)
     this.registerForm = this.formBuilder.group({
         fullName: ['', [Validators.required, Validators.minLength(2)]],
         email: ['', [Validators.email, Validators.minLength(5)]],
@@ -43,21 +43,10 @@ export class ScheduleFormComponent implements OnInit {
     });
   }
 
-  parseDateMonth(date) {
-    return moment(date).format('DD/MM hh:mm A');
-  }
-
-  parseHour(date) {
-    return moment(date).format('hh:mm A');
-  }
-
-  parseWeekDay(date) {
-    return moment(date).format('ddd');
-  }
-
   onSubmit() {
     this.submitted = true;
     if (this.registerForm.invalid || !this.chosenSlot) {
+      console.log('missing form fields');
       return;
     } else {
       this.submitPayload.emit({

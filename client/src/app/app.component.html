@@ -1,14 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="head"> FUOCO
-        <div class="lemonicon-container">
-                <img id="lemonicon" src="../assets/lemon.png">
+<div class="head"> 
+        <h2 id="pilates-a">PILATES A</h2>
+        <h2 id="fuoco">FUOCO</h2>
+        <div class="fuocoicon-container">
+                <img id="icon" src="../assets/firecolor-outline.png">
         </div>
 </div>
 
 <div class="main">
         <div class="story"> <h2> Challenging, super fun, and satisfying pilates </h2> </div>
         <div class="schedule-button-container">
-            <button class="schedule-button" [class.active]="formOpen" (click)="onRequestFormClick()"> Schedule Pilates </button>
+            <button class="schedule-button" [class.active]="formOpen" (click)="onRequestFormClick()"> Schedule Class </button>
+            <div id="takes-a-minute" *ngIf="!formOpen"> Takes less than a minute</div>
         </div>
 </div>
 <ngx-loading [show]="loading" [config]="{'fullScreenBackdrop':false, 'backdropBackgroundColour': 'rgba(0,0,0,0)'}"></ngx-loading>
