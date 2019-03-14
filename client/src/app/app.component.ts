@@ -10,7 +10,12 @@ import { NgxLoadingModule } from 'ngx-loading';
 export class AppComponent implements OnInit {
   title = 'lemonoa';
   formOpen = false;
+  scheduled = false;
   slots: any;
+  summaryData: any;
+  scheduleClassText = 'Schedule Class';
+  scheduleAnotherClassText = 'Schedule Another Class';
+  scheduleButtonText = this.scheduleClassText;
   public loading = false;
 
   constructor(private slotsService: SlotsService) {}
@@ -22,17 +27,23 @@ export class AppComponent implements OnInit {
   }
 
   onRequestFormClick() {
+    if (this.scheduled) {
+      this.scheduled = ! this.scheduled;
+      this.ngOnInit();
+      this.formOpen = ! this.formOpen;
+    }
     if (!this.formOpen) {
-      // this.loading = !this.loading;
       if (!this.slotsService.availableSlots.value.toString()) {this.slotsService.getSlots();
       }
-      // this.loading = !this.loading;
     }
     this.formOpen = !this.formOpen;
   }
 
   scheduleSlot(data) {
     this.slotsService.scheduleSlot(data);
+    this.scheduled = true;
+    this.summaryData = data;
+    this.scheduleButtonText = this.scheduleAnotherClassText;
   }
 }
 

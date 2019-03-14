@@ -12,10 +12,12 @@ import { SlotsService } from './services/data-provider.service';
 import { NgxLoadingModule } from 'ngx-loading';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { DeviceDetectorModule } from 'ngx-device-detector';
+import { SummaryPageComponent } from './components/summary-page/summary-page.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ScheduleFormComponent
+    ScheduleFormComponent,
+    SummaryPageComponent
   ],
   imports: [
     BrowserModule,

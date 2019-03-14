@@ -8,6 +8,10 @@ p {
     font-size: 10px;
 }
 
+#email-guide {
+  font-size: 11px;
+}
+
 #schedule-form {
     max-height: 500px;
 }
@@ -152,4 +156,10 @@ border-radius: 5px;
   .personal-info {
     margin: 0 auto;
   }
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }

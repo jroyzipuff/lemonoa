@@ -11,9 +11,9 @@ import * as moment from 'moment';
 export class ScheduleFormComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
-  chosenSlot = {};
-  chosenHour = '';
-  chosenEventId = '';
+  chosenSlot;
+  chosenHour;
+  chosenEventId;
   selectedAttendees = 1;
   moment: moment.Moment;
   attendeeSlot = '../../../assets/attendee-ico.png';
@@ -56,17 +56,18 @@ export class ScheduleFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
     if (this.registerForm.invalid || !this.chosenSlot) {
       console.log('missing form fields');
       return;
     } else {
-      console.log(this.chosenSlot);
       this.submitPayload.emit({
       'id': this.chosenEventId,
       'email': this.f['email'].value,
       'fullName': this.f['fullName'].value,
       'phone': this.f['phone'].value,
-      'attendees': this.selectedAttendees});
+      'attendees': this.selectedAttendees,
+      'dateTime': [this.chosenSlot[0], this.chosenHour] }
+      );
     }
+    this.submitted = true;
 }}

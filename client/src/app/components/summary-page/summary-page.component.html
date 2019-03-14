@@ -1,0 +1,8 @@
+<div id="summary-container">
+  <h5 id="summary-header"> Hey <b>{{summaryData.fullName}},</b></h5>
+  <p> Your session is scheduled for {{summaryData.attendees}} participants,</p> <span> <b>{{summaryData.dateTime[0]}}</b> at <b>{{summaryData.dateTime[1]}}</b></span>
+  <p *ngIf="summaryData.email" >Confirmation was sent to {{summaryData.email}}</p>
+  <p> See you!</p>
+  <p id="cancellation">*Free cancellation up to 7 hours before the beginning of the class by email. Otherwise, the full price will be charged.</p>
+</div>
+

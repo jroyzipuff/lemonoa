@@ -60,6 +60,45 @@
     opacity: 0.5;
 }
 
+.locicon {
+    max-width: 23px;
+}
+
+.mailicon {
+    max-width: 20px;
+}
+
+.info-text {
+    font-size: 15px;
+}
+
+#info-container {
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+    padding-right: 15px; 
+}
+
+.mail-icon-container {
+    position: relative;
+    top: 20px;
+    right: 30px;
+}
+
+.loc-icon-container {
+    position: relative;
+    top: 20px;
+    right: 32px;
+}
+
+#loc-info-container {
+}
+
+#mail-info-container {
+    position: relative;
+    bottom: 15px;
+}
+
 #fuoco {
     position: relative;
     left: 60px;
