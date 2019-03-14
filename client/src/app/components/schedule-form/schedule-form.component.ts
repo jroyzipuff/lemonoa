@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import * as moment from 'moment';
 
 @Component({
@@ -10,17 +11,27 @@ import * as moment from 'moment';
 export class ScheduleFormComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
-  chosenSlot;
-  chosenHour;
+  chosenSlot = {};
+  chosenHour = '';
+  chosenEventId = '';
   selectedAttendees = 1;
   moment: moment.Moment;
   attendeeSlot = '../../../assets/attendee-ico.png';
   attendeeSelectedSlot = '../../../assets/attendee-ico-selected.png';
-  slideConfig = {
+  slideConfig = {};
+  slideConfigDesktop = {
     'slidesToShow': 7,
     'slidesToScroll': 7,
-    'nextArrow': '<div class="nav-btn next-slide"></div>',
-    'prevArrow': '<div class="nav-btn prev-slide"></div>',
+    'nextArrow': false,
+    'prevArrow': false,
+    'dots': true,
+    'infinite': false
+  };
+  slideConfigMobile = {
+    'slidesToShow': 3,
+    'slidesToScroll': 1,
+    'nextArrow': false,
+    'prevArrow': false,
     'dots': true,
     'infinite': false
   };
@@ -32,7 +43,8 @@ export class ScheduleFormComponent implements OnInit {
   slots = [];
 
   get f() { return this.registerForm.controls; }
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private deviceDetectorService: DeviceDetectorService) {
+    this.slideConfig = this.deviceDetectorService.isMobile() ? this.slideConfigMobile : this.slideConfigDesktop;
   }
 
   ngOnInit() {
@@ -49,8 +61,9 @@ export class ScheduleFormComponent implements OnInit {
       console.log('missing form fields');
       return;
     } else {
+      console.log(this.chosenSlot);
       this.submitPayload.emit({
-      'id': this.chosenSlot.id,
+      'id': this.chosenEventId,
       'email': this.f['email'].value,
       'fullName': this.f['fullName'].value,
       'phone': this.f['phone'].value,

@@ -25,6 +25,7 @@ p {
 
 #slot-header {
   font-size: 14px;
+  cursor: initial;
 }
 
 #hours:hover {
@@ -40,11 +41,6 @@ p {
 .form-group {
     position: relative;
     max-width: 200px;
-}
-
-.personal-info {
-    position: relative;
-    left: 20%;
 }
 
 .attendee-ico {
@@ -68,6 +64,7 @@ p {
   top: 30px;
   max-width: 300px;
   margin: auto;
+  margin-bottom: 10px;
 }
 
 .invalid {
@@ -79,14 +76,19 @@ p {
 
 #session-grid {
     max-width:  600px;
-    position: relative;
-    left: 20%;
+    margin: 0 5px;
 }
 
 .form {
     display: inline-flex;
     width: 100%;
     padding: 25px 0px 20px 0px;
+    justify-content: center;
+}
+
+
+.personal-info {
+  margin: 0 5px;
 }
 
 .session-box:hover {
@@ -134,4 +136,20 @@ border-radius: 5px;
 
   .active {
     background-color: rgb(252, 238, 112);
+}
+
+
+@media only screen and (max-width: 800px) {
+  .form {
+    flex-direction: column;
+  }
+  .slick-slider {
+    max-width: 100%;
+  }
+  #session-grid {
+    position: initial;
+  }
+  .personal-info {
+    margin: 0 auto;
+  }
 }
