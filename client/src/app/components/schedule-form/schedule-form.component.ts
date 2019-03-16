@@ -36,11 +36,14 @@ export class ScheduleFormComponent implements OnInit {
     'infinite': false
   };
 
+  _slots = [];
+
   @Output()
   submitPayload = new EventEmitter();
 
-  @Input()
-  slots = [];
+  @Input() set slots(_slots: []) {
+    this._slots = _slots;
+  }
 
   get f() { return this.registerForm.controls; }
   constructor(private formBuilder: FormBuilder, private deviceDetectorService: DeviceDetectorService) {

@@ -1,6 +1,6 @@
 .head {
     font-size: 25px;
-    padding: 25px;
+    padding: 10px;
 }
 
 .head h2{
@@ -91,9 +91,6 @@
     right: 32px;
 }
 
-#loc-info-container {
-}
-
 #mail-info-container {
     position: relative;
     bottom: 15px;
@@ -109,3 +106,27 @@
     top: 5px;
     font-size: 14px;
 }
+
+@media only screen and (max-width: 800px) {
+    #mail-info-container {
+        position: relative;
+    }
+
+    #info-container {
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        padding-right: 15px; 
+    }
+    .locicon {
+        max-width: 18px;
+    }
+    
+    .mailicon {
+        max-width: 15px;
+    }
+
+    .info-text {
+        font-size: 10px;
+    }
+  }

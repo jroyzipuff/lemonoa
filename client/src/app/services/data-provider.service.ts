@@ -10,11 +10,13 @@ export class SlotsService {
   getSlots() {
     return this.http.get(this.baseUrl).subscribe((data) => {
         this.availableSlots.next(data);
+        console.log('available slots refreshed');
     });
   }
    scheduleSlot(payload) {
       return this.http.patch(this.baseUrl + '/' + payload.id, payload).subscribe((res) => {
-        console.log('put slot!');
+        console.log('slot scheduled');
+        this.getSlots();
       });
   }
 }

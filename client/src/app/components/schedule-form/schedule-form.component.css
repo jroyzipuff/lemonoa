@@ -4,6 +4,21 @@ input {
     max-height: 25px;
 }
 
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.form-control {
+background: inherit;
+border-radius: 1px;
+border-bottom-color: #e2ca6b;
+border-top: none;
+border-left: none;
+border-right: none;
+}
+
 p {
     font-size: 10px;
 }
@@ -92,7 +107,7 @@ p {
 
 
 .personal-info {
-  margin: 0 5px;
+  margin: 0 25px;
 }
 
 .session-box:hover {

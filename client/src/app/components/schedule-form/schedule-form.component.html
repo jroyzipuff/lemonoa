@@ -25,7 +25,7 @@
                 <ngx-slick-carousel class="carousel" 
                 #slickModal="slick-carousel" 
                 [config]="slideConfig">
-                <div ngxSlickItem class="session-box" *ngFor="let slot of slots; let i = index">
+                <div ngxSlickItem class="session-box" *ngFor="let slot of _slots; let i = index">
                     <div id="slot-header"><b>{{slot[0]}}</b></div>
                     <div id="hours-container">
                         <div id="hours" (click)="chosenHour = slotHour['start']; chosenEventId = slotHour['id']; chosenSlot = slot" [class.active]="chosenHour == slotHour['start'] && chosenSlot == slot" *ngFor="let slotHour of slot[1];"> {{slotHour['start']}}</div>
