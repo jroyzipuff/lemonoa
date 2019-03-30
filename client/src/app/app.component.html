@@ -1,9 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="head"> 
-        <h2 id="pilates-a">PILATES A</h2>
-        <h2 id="fuoco">FUOCO</h2>
+<div class="head">
         <div class="fuocoicon-container">
-                <!-- <img id="icon" src="../assets/firecolor-outline.png"> -->
+                <img id="icon" src="../assets/afuocologo.png">
+        </div>
+        <div id="info-container"> 
+                <div id="loc-info-container">
+                        <div class="loc-icon-container"><img class="locicon" src="../assets/locblack.png"></div>
+                        <div class="info-text"> Hertzel - Rotchild Area, Tel Aviv</div>
+                </div>
+                <div id="mail-info-container">
+                        <div class="mail-icon-container"><img class="mailicon" src="../assets/gmailblack.png"> </div>
+                        <div class="info-text"> Pilatesafuoco@gmail.com </div>
+                </div>
         </div>
 </div>
 
@@ -17,14 +25,5 @@
 <ngx-loading [show]="loading" [config]="{'fullScreenBackdrop':false, 'backdropBackgroundColour': 'rgba(0,0,0,0)'}"></ngx-loading>
 <app-schedule-form  [slots]="slots" (submitPayload)="scheduleSlot($event)" *ngIf="formOpen && scheduled==false"></app-schedule-form>
 <app-summary-page *ngIf="scheduled" [summaryData]="summaryData" > </app-summary-page>
-<div id="info-container"> 
-        <div id="loc-info-container">
-                <div class="loc-icon-container"><img class="locicon" src="../assets/locblack.png"></div>
-                <div class="info-text"> Hertzel Rotchild Area, Tel-Aviv</div>
-        </div>
-        <div id="mail-info-container">
-                <div class="mail-icon-container"><img class="mailicon" src="../assets/gmailblack.png"> </div>
-                <div class="info-text"> Pilatesafuoco@gmail.com </div>
-        </div>
-</div>
+
 <router-outlet></router-outlet>

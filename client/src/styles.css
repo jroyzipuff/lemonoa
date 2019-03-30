@@ -1,9 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 
+@font-face {
+    font-family: bamboobrisk;
+    src: url(assets/Bamboo_Brisk.otf) format("opentype");
+  }
+
 body{
     background-color: #fbfaea;
-    font-family:'Poiret One', sans-serif;
+    font-family: 'Indie Flower', sans-serif;
     max-width: 100%;
     padding: 10px;
     overflow-x: hidden;

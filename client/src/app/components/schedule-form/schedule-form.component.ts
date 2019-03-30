@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { StorageService } from '../../services/local-storage.service';
 import * as moment from 'moment';
 
 @Component({
@@ -14,6 +15,7 @@ export class ScheduleFormComponent implements OnInit {
   chosenSlot;
   chosenHour;
   chosenEventId;
+  savedInfo = {'fullName': '', 'email': '', 'phone': ''};
   selectedAttendees = 1;
   moment: moment.Moment;
   attendeeSlot = '../../../assets/attendee-ico.png';
@@ -46,15 +48,19 @@ export class ScheduleFormComponent implements OnInit {
   }
 
   get f() { return this.registerForm.controls; }
-  constructor(private formBuilder: FormBuilder, private deviceDetectorService: DeviceDetectorService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private deviceDetectorService: DeviceDetectorService,
+    private storageService: StorageService) {
     this.slideConfig = this.deviceDetectorService.isMobile() ? this.slideConfigMobile : this.slideConfigDesktop;
   }
 
   ngOnInit() {
+    const info = this.storageService.getInfo() || this.savedInfo;
     this.registerForm = this.formBuilder.group({
-        fullName: ['', [Validators.required, Validators.minLength(2)]],
-        email: ['', [Validators.email, Validators.minLength(5)]],
-        phone: ['', [Validators.required, Validators.minLength(10)]]
+        fullName: [info.fullName, [Validators.required, Validators.minLength(2)]],
+        email: [info.email, [Validators.email, Validators.minLength(5)]],
+        phone: [info.phone, [Validators.required, Validators.minLength(10)]]
     });
   }
 
@@ -72,5 +78,6 @@ export class ScheduleFormComponent implements OnInit {
       'dateTime': [this.chosenSlot[0], this.chosenHour] }
       );
     }
+    this.storageService.saveInfo(this.f['fullName'].value, this.f['email'].value, this.f['phone'].value);
     this.submitted = true;
 }}

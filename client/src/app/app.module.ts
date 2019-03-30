@@ -13,6 +13,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { SummaryPageComponent } from './components/summary-page/summary-page.component';
+import { StorageService } from './services/local-storage.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,7 @@ import { SummaryPageComponent } from './components/summary-page/summary-page.com
       useFactory: adapterFactory
     }),      ReactiveFormsModule
   ],
-  providers: [SlotsService],
+  providers: [SlotsService, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

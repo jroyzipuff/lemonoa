@@ -3,15 +3,28 @@
     padding: 10px;
 }
 
+@font-face {
+    font-family: bamboobrisk;
+    src: url(/assets/Bamboo_Brisk.otf) format("opentype");
+  }
+
+.story {
+    font-family:'bamboobrisk', sans-serif; 
+}
+
 .head h2{
     left: 100px;
 }
 
 .fuocoicon-container img {
-    position: relative;
     width: 100px;
-    bottom: 140px;
-    z-index: -10;
+}
+
+#info-container {
+    width: 200px;
+    position: absolute;
+    right: 10px;
+    top: 0px;
 }
 
 .schedule-button  {
@@ -49,15 +62,13 @@
 }
 
 .schedule-button-container {
-    padding-top: 60px;
+    padding-top: 40px;
 }
 
 #icon {
-    position: absolute;
-    max-width: 60px;
-    left: 40px;
-    top: 32px;
-    opacity: 0.5;
+    position: relative;
+    width: 140px;
+    left: 20px;
 }
 
 .locicon {
@@ -70,13 +81,9 @@
 
 .info-text {
     font-size: 15px;
-}
-
-#info-container {
-    position: absolute;
-    bottom: 0px;
-    right: 10px;
-    padding-right: 15px; 
+    bottom: 5px;
+    position: relative;
+    font-family: 'Indie Flower', sans-serif;
 }
 
 .mail-icon-container {
@@ -113,10 +120,8 @@
     }
 
     #info-container {
-        position: absolute;
-        top: 0px;
-        right: 10px;
-        padding-right: 15px; 
+        width: 120px;
+        right: 15px;
     }
     .locicon {
         max-width: 18px;
@@ -127,6 +132,18 @@
     }
 
     .info-text {
-        font-size: 10px;
+        font-size: 12px;
     }
+
+    #icon {
+        position: relative;
+        width: 80px;
+        left: 5px;
+        padding-bottom: 10px;
+    }
+
+    .main {
+        padding: 20px;
+    }
+    
   }
