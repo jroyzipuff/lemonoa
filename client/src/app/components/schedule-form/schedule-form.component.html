@@ -27,12 +27,12 @@
                 [config]="slideConfig">
                 <div ngxSlickItem class="session-box" *ngFor="let slot of _slots; let i = index">
                     <div id="slot-header"><b>{{slot[0]}}</b></div>
-                    <div id="hours-container">
-                        <div id="hours" (click)="chosenHour = slotHour['start']; chosenEventId = slotHour['id']; chosenSlot = slot" [class.active]="chosenHour == slotHour['start'] && chosenSlot == slot" *ngFor="let slotHour of slot[1];"> {{slotHour['start']}}</div>
+                    <div id="hours-container"  ngx-auto-scroll lock-y-offset="50">
+                        <div id="hours" [class.disabled]="!slotHour['id']" (click)="chosenHour = slotHour['start']; chosenEventId = slotHour['id']; chosenSlot = slot;" [class.active]="chosenHour == slotHour['start'] && chosenSlot == slot" *ngFor="let slotHour of slot[1];"> {{slotHour['start']}}</div>
                         <div>
                             <div class="attendees-header" *ngIf="chosenSlot == slot"> Participants </div>
                             <div class="attendees-header" *ngIf="chosenSlot == slot"> x </div>
-                            <div id="attendee" *ngFor="let i of [1,2,3];" (click)="selectedAttendees = i">
+                            <div id="attendee" *ngFor="let i of [1,2,3];" (click)="selectedAttendees = i;">
                             <img class="attendee-ico" *ngIf="chosenSlot == slot" [src]="selectedAttendees >= i ? attendeeSelectedSlot : attendeeSlot"></div>
                         </div>
                     </div>

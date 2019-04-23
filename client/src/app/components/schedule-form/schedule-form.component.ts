@@ -1,15 +1,15 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { ViewChild, Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { StorageService } from '../../services/local-storage.service';
-import * as moment from 'moment';
-
+import { NgxAutoScroll } from 'ngx-auto-scroll';
 @Component({
   selector: 'app-schedule-form',
   templateUrl: './schedule-form.component.html',
   styleUrls: ['./schedule-form.component.css']
 })
 export class ScheduleFormComponent implements OnInit {
+  @ViewChild(NgxAutoScroll) ngxAutoScroll: NgxAutoScroll;
   registerForm: FormGroup;
   submitted = false;
   chosenSlot;
@@ -17,7 +17,6 @@ export class ScheduleFormComponent implements OnInit {
   chosenEventId;
   savedInfo = {'fullName': '', 'email': '', 'phone': ''};
   selectedAttendees = 1;
-  moment: moment.Moment;
   attendeeSlot = '../../../assets/attendee-ico.png';
   attendeeSelectedSlot = '../../../assets/attendee-ico-selected.png';
   slideConfig = {};
@@ -80,4 +79,11 @@ export class ScheduleFormComponent implements OnInit {
     }
     this.storageService.saveInfo(this.f['fullName'].value, this.f['email'].value, this.f['phone'].value);
     this.submitted = true;
-}}
+}
+
+public forceScrollDown(): void {
+  this.ngxAutoScroll.forceScrollDown();
+}
+}
+
+

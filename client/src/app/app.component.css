@@ -21,9 +21,8 @@
 }
 
 #info-container {
-    width: 200px;
     position: absolute;
-    right: 10px;
+    right: 30px;
     top: 0px;
 }
 
@@ -79,6 +78,11 @@
     max-width: 20px;
 }
 
+.instaicon {
+    max-width: 20px;
+}
+
+
 .info-text {
     font-size: 15px;
     bottom: 5px;
@@ -98,9 +102,20 @@
     right: 32px;
 }
 
+.insta-icon-container {
+    position: relative;
+    top: 20px;
+    right: 30px;
+}
+
+#insta-info-container {
+    position: relative;
+    bottom: 50px;
+}
+
 #mail-info-container {
     position: relative;
-    bottom: 15px;
+    bottom: 25px;
 }
 
 #fuoco {
@@ -120,14 +135,19 @@
     }
 
     #info-container {
-        width: 120px;
         right: 15px;
     }
+    
     .locicon {
         max-width: 18px;
+        margin-top: 10px;
     }
     
     .mailicon {
+        max-width: 15px;
+    }
+
+    .instaicon {
         max-width: 15px;
     }
 

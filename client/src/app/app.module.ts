@@ -14,11 +14,14 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { SummaryPageComponent } from './components/summary-page/summary-page.component';
 import { StorageService } from './services/local-storage.service';
+import {NgxAutoScroll} from 'ngx-auto-scroll';
+
 @NgModule({
   declarations: [
     AppComponent,
     ScheduleFormComponent,
-    SummaryPageComponent
+    SummaryPageComponent,
+    NgxAutoScroll
   ],
   imports: [
     BrowserModule,
