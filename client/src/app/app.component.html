@@ -9,18 +9,24 @@
                         <div class="info-text"> Hertzel - Rothschild Area, Tel Aviv</div>
                 </div>
                 <div id="mail-info-container">
-                        <div class="mail-icon-container"><img class="mailicon" src="../assets/gmailblack.png"> </div>
-                        <div class="info-text"> Pilatesafuoco@gmail.com </div>
+                        <div class="mail-icon-container"><img class="mailicon" src="../assets/smartphone-call.png"> </div>
+                        <div class="info-text"> 0512735523 / Pilatesafuoco@gmail.com </div>
                 </div>
                 <div id="insta-info-container">
                         <div class="insta-icon-container"><img class="instaicon" src="../assets/insta.png"> </div>
-                        <div class="info-text"> Pilatesafuoco </div>
+                        <div class="info-text"> @Pilatesafuoco </div>
                 </div>
+<!-- 
+                <div id="cell-info-container">
+                        <div class="cell-icon-container"><img class="cellicon" src="../assets/smartphone-call.png"> </div>
+                        <div class="info-text"> 123456789 </div>
+                </div> -->
+                
         </div>
 </div>
 
 <div class="main">
-        <div class="story"> <h2> Challenging, super fun, and satisfying pilates </h2> </div>
+        <div class="story"> <h2> Challenging and super fun pilates <br> for all levels, conditions and ages!</h2> </div>
         <div class="schedule-button-container">
             <button class="schedule-button" [class.active]="formOpen" (click)="onRequestFormClick()"> {{scheduleButtonText}} </button>
             <div id="takes-a-minute" *ngIf="!formOpen && scheduleButtonText == scheduleClassText"> Takes less than a minute</div>

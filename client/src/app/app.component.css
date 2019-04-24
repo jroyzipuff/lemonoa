@@ -82,6 +82,10 @@
     max-width: 20px;
 }
 
+.cellicon {
+    max-width: 20px;
+}
+
 
 .info-text {
     font-size: 15px;
@@ -108,6 +112,13 @@
     right: 30px;
 }
 
+.cell-icon-container {
+    position: relative;
+    top: 20px;
+    right: 30px;
+}
+
+
 #insta-info-container {
     position: relative;
     bottom: 50px;
@@ -116,6 +127,11 @@
 #mail-info-container {
     position: relative;
     bottom: 25px;
+}
+
+#cell-info-container {
+    position: relative;
+    bottom: 75px;
 }
 
 #fuoco {
@@ -137,6 +153,10 @@
     #info-container {
         right: 15px;
     }
+
+    h2 {
+        font-size: 26px;
+    }
     
     .locicon {
         max-width: 18px;
@@ -148,6 +168,10 @@
     }
 
     .instaicon {
+        max-width: 15px;
+    }
+
+    .cellicon {
         max-width: 15px;
     }
 

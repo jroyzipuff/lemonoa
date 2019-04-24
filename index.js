@@ -6,10 +6,10 @@ const serverRunningSince = new Date();
 
 app.use(bodyParser.json());
 
-app.use(Express.static(__dirname + '/client/dist/lemonoa/',{ maxAge: 100000 }))
+app.use(Express.static(__dirname + '/client/dist/pilatesafuoco/',{ maxAge: 100000 }))
 
 app.get('/', (req, res) => {
-  res.sendFile(`${__dirname}/client/dist/lemonoa/index.html`);
+  res.sendFile(`${__dirname}/client/dist/pilatesafuoco/index.html`);
 });
 
 app.use('/api', require('./api'));

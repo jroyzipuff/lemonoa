@@ -8,7 +8,7 @@ import { NgxLoadingModule } from 'ngx-loading';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'lemonoa';
+  title = 'Pilates A Fuoco';
   formOpen = false;
   scheduled = false;
   slots: any;
