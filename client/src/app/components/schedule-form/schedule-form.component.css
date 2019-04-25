@@ -37,7 +37,7 @@ p {
 }
 
 #hours-container {
-  max-height: 90%;
+  max-height: 80%;
   position: relative;
   overflow-y: auto;
 }
@@ -47,7 +47,7 @@ p {
   cursor: initial;
 }
 
-#hours:hover {
+#hours:hover:not(.active) {
   background-color: rgb(241, 236, 189);
  }
 

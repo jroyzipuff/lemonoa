@@ -16,9 +16,11 @@ export class ScheduleFormComponent implements OnInit {
   chosenHour;
   chosenEventId;
   savedInfo = {'fullName': '', 'email': '', 'phone': ''};
-  selectedAttendees = 1;
   attendeeSlot = '../../../assets/attendee-ico.png';
   attendeeSelectedSlot = '../../../assets/attendee-ico-selected.png';
+  attendeesSelection = {'1': this.attendeeSelectedSlot, '2': this.attendeeSlot, '3': this.attendeeSlot};
+  selectedAttendees = 1;
+
   slideConfig = {};
   slideConfigDesktop = {
     'slidesToShow': 7,
@@ -81,8 +83,18 @@ export class ScheduleFormComponent implements OnInit {
     this.submitted = true;
 }
 
+public toggleAttendees(i): void {
+  if (this.attendeesSelection[i] === this.attendeeSlot && this.attendeesSelection[i - 1] !== this.attendeeSlot)  {
+    this.attendeesSelection[i] = this.attendeeSelectedSlot;
+  } else if (this.attendeesSelection[i] === this.attendeeSelectedSlot && this.attendeesSelection[i + 1] !== this.attendeeSelectedSlot ) {
+    this.attendeesSelection[i] = this.attendeeSlot;
+  }
+
+}
+
 public forceScrollDown(): void {
   this.ngxAutoScroll.forceScrollDown();
+  // console.log('forescrolling');
 }
 }
 
